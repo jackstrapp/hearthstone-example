@@ -10,10 +10,11 @@ describe('deckManager.coDeckList', () => {
         element:angular.IAugmentedJQuery,
         controller:DeckListController,
         controllerSpy:jasmine.Spy;
+    
 
     beforeEach(() => {
         angular.mock.module(appName);
-
+        
         inject((_$compile_:ng.ICompileService, _$rootScope_:ng.IRootScopeService) => {
             $compile = _$compile_;
             $rootScope = _$rootScope_;

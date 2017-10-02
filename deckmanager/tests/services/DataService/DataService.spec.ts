@@ -3,6 +3,7 @@ import DataService from '../../../services/DataService/DataService';
 import {ILocalStorageService} from '../../../../common/services/LocalStorageService/ILocalStorageService';
 import {IDeck} from '../../../../common/models/IDeck';
 import Deck from '../../../../common/models/Deck';
+import { StateService } from "@uirouter/angularjs/lib";
 
 describe('deckmanager.DataService', () => {
     let dataService:IDataService,
@@ -11,6 +12,7 @@ describe('deckmanager.DataService', () => {
         localStorageMock:any,
         localStorageLoadSpy:jasmine.Spy,
         localStorageSaveSpy:jasmine.Spy,
+        stateMock: StateService,
         deck1:IDeck,
         deck2:IDeck;
 
@@ -23,6 +25,11 @@ describe('deckmanager.DataService', () => {
             }
         } as angular.IWindowService;
         $windowSpy = spyOn($window, 'confirm');
+
+
+        stateMock = {
+            go: () => {}
+        } as any;
 
         // TODO: If the initialisation of the service was put away into a method, this block would be easier to write.
         localStorageMock = {
@@ -37,7 +44,7 @@ describe('deckmanager.DataService', () => {
         deck2 = new Deck('id2', 'bar', []);
         localStorageLoadSpy.and.returnValue([deck1, deck2]);
 
-        dataService = new DataService($window, localStorageMock);
+        dataService = new DataService($window, localStorageMock, stateMock);
     });
 
     it('should set the decks from local storage on instantation and get them', () => {
@@ -57,9 +64,11 @@ describe('deckmanager.DataService', () => {
     });
 
     it('should allow deck editing redirect', () => {
+        spyOn(stateMock, 'go');
+        
         dataService.editDeck(deck1);
 
-        expect($window.location.href).toBe('deckbuilder.html#id=id1');
+        expect(stateMock.go).toHaveBeenCalledWith('deckBuilder', {id: deck1.id});
     });
 
     it('should allow deletion of decks', () => {

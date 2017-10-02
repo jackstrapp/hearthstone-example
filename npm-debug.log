@@ -1,0 +1,182 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Users\\renej\\Downloads\\NodeJSPortable\\App\\NodeJS\\node.exe',
+1 verbose cli   'C:\\Users\\renej\\Downloads\\NodeJSPortable\\Data\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@3.5.3
+3 info using node@v5.7.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchNamedPackageData @types/jasmine
+20 silly mapToRegistry name @types/jasmine
+21 silly mapToRegistry scope (from package name) @types
+22 verbose mapToRegistry no registry URL found in name for scope @types
+23 silly mapToRegistry using default registry
+24 silly mapToRegistry registry https://registry.npmjs.org/
+25 silly mapToRegistry uri https://registry.npmjs.org/@types%2fjasmine
+26 silly fetchNamedPackageData @uirouter/angularjs
+27 silly mapToRegistry name @uirouter/angularjs
+28 silly mapToRegistry scope (from package name) @uirouter
+29 verbose mapToRegistry no registry URL found in name for scope @uirouter
+30 silly mapToRegistry using default registry
+31 silly mapToRegistry registry https://registry.npmjs.org/
+32 silly mapToRegistry uri https://registry.npmjs.org/@uirouter%2fangularjs
+33 silly fetchNamedPackageData angular
+34 silly mapToRegistry name angular
+35 silly mapToRegistry using default registry
+36 silly mapToRegistry registry https://registry.npmjs.org/
+37 silly mapToRegistry uri https://registry.npmjs.org/angular
+38 silly fetchNamedPackageData angular-mocks
+39 silly mapToRegistry name angular-mocks
+40 silly mapToRegistry using default registry
+41 silly mapToRegistry registry https://registry.npmjs.org/
+42 silly mapToRegistry uri https://registry.npmjs.org/angular-mocks
+43 silly fetchNamedPackageData typings
+44 silly mapToRegistry name typings
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npmjs.org/
+47 silly mapToRegistry uri https://registry.npmjs.org/typings
+48 verbose request uri https://registry.npmjs.org/@types%2fjasmine
+49 verbose request no auth needed
+50 info attempt registry request try #1 at 10:59:05
+51 verbose request id 959459f1b838ebfa
+52 http request GET https://registry.npmjs.org/@types%2fjasmine
+53 verbose request uri https://registry.npmjs.org/@uirouter%2fangularjs
+54 verbose request no auth needed
+55 info attempt registry request try #1 at 10:59:05
+56 http request GET https://registry.npmjs.org/@uirouter%2fangularjs
+57 verbose request uri https://registry.npmjs.org/angular
+58 verbose request no auth needed
+59 info attempt registry request try #1 at 10:59:05
+60 http request GET https://registry.npmjs.org/angular
+61 verbose request uri https://registry.npmjs.org/angular-mocks
+62 verbose request no auth needed
+63 info attempt registry request try #1 at 10:59:05
+64 http request GET https://registry.npmjs.org/angular-mocks
+65 verbose request uri https://registry.npmjs.org/typings
+66 verbose request no auth needed
+67 info attempt registry request try #1 at 10:59:05
+68 http request GET https://registry.npmjs.org/typings
+69 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+70 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+71 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+72 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+73 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+74 info attempt registry request try #2 at 10:59:16
+75 http request GET https://registry.npmjs.org/angular-mocks
+76 info attempt registry request try #2 at 10:59:16
+77 http request GET https://registry.npmjs.org/@uirouter%2fangularjs
+78 info attempt registry request try #2 at 10:59:16
+79 http request GET https://registry.npmjs.org/@types%2fjasmine
+80 info attempt registry request try #2 at 10:59:16
+81 http request GET https://registry.npmjs.org/typings
+82 info attempt registry request try #2 at 10:59:16
+83 http request GET https://registry.npmjs.org/angular
+84 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+85 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+86 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+87 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+88 info retry will retry, error on last attempt: Error: connect ECONNREFUSED 151.101.16.162:443
+89 info attempt registry request try #3 at 11:00:17
+90 http request GET https://registry.npmjs.org/typings
+91 info attempt registry request try #3 at 11:00:17
+92 http request GET https://registry.npmjs.org/angular-mocks
+93 info attempt registry request try #3 at 11:00:17
+94 http request GET https://registry.npmjs.org/angular
+95 info attempt registry request try #3 at 11:00:17
+96 http request GET https://registry.npmjs.org/@types%2fjasmine
+97 info attempt registry request try #3 at 11:00:17
+98 http request GET https://registry.npmjs.org/@uirouter%2fangularjs
+99 silly fetchPackageMetaData Error: connect ECONNREFUSED 151.101.16.162:443
+99 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+99 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+99 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1057:14)
+99 silly fetchPackageMetaData  error for typings@^2.1.1 { [Error: connect ECONNREFUSED 151.101.16.162:443]
+99 silly fetchPackageMetaData   code: 'ECONNREFUSED',
+99 silly fetchPackageMetaData   errno: 'ECONNREFUSED',
+99 silly fetchPackageMetaData   syscall: 'connect',
+99 silly fetchPackageMetaData   address: '151.101.16.162',
+99 silly fetchPackageMetaData   port: 443 }
+100 silly fetchPackageMetaData Error: connect ECONNREFUSED 151.101.16.162:443
+100 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+100 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+100 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1057:14)
+100 silly fetchPackageMetaData  error for angular-mocks@1.4.7 { [Error: connect ECONNREFUSED 151.101.16.162:443]
+100 silly fetchPackageMetaData   code: 'ECONNREFUSED',
+100 silly fetchPackageMetaData   errno: 'ECONNREFUSED',
+100 silly fetchPackageMetaData   syscall: 'connect',
+100 silly fetchPackageMetaData   address: '151.101.16.162',
+100 silly fetchPackageMetaData   port: 443 }
+101 silly fetchPackageMetaData Error: connect ECONNREFUSED 151.101.16.162:443
+101 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+101 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+101 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1057:14)
+101 silly fetchPackageMetaData  error for @types/jasmine@^2.6.0 { [Error: connect ECONNREFUSED 151.101.16.162:443]
+101 silly fetchPackageMetaData   code: 'ECONNREFUSED',
+101 silly fetchPackageMetaData   errno: 'ECONNREFUSED',
+101 silly fetchPackageMetaData   syscall: 'connect',
+101 silly fetchPackageMetaData   address: '151.101.16.162',
+101 silly fetchPackageMetaData   port: 443 }
+102 silly fetchPackageMetaData Error: connect ECONNREFUSED 151.101.16.162:443
+102 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+102 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+102 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1057:14)
+102 silly fetchPackageMetaData  error for angular@1.4.7 { [Error: connect ECONNREFUSED 151.101.16.162:443]
+102 silly fetchPackageMetaData   code: 'ECONNREFUSED',
+102 silly fetchPackageMetaData   errno: 'ECONNREFUSED',
+102 silly fetchPackageMetaData   syscall: 'connect',
+102 silly fetchPackageMetaData   address: '151.101.16.162',
+102 silly fetchPackageMetaData   port: 443 }
+103 silly fetchPackageMetaData Error: connect ECONNREFUSED 151.101.16.162:443
+103 silly fetchPackageMetaData     at Object.exports._errnoException (util.js:856:11)
+103 silly fetchPackageMetaData     at exports._exceptionWithHostPort (util.js:879:20)
+103 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1057:14)
+103 silly fetchPackageMetaData  error for @uirouter/angularjs@^1.0.6 { [Error: connect ECONNREFUSED 151.101.16.162:443]
+103 silly fetchPackageMetaData   code: 'ECONNREFUSED',
+103 silly fetchPackageMetaData   errno: 'ECONNREFUSED',
+103 silly fetchPackageMetaData   syscall: 'connect',
+103 silly fetchPackageMetaData   address: '151.101.16.162',
+103 silly fetchPackageMetaData   port: 443 }
+104 silly rollbackFailedOptional Starting
+105 silly rollbackFailedOptional Finishing
+106 silly runTopLevelLifecycles Starting
+107 silly runTopLevelLifecycles Finishing
+108 silly install printInstalled
+109 verbose stack Error: connect ECONNREFUSED 151.101.16.162:443
+109 verbose stack     at Object.exports._errnoException (util.js:856:11)
+109 verbose stack     at exports._exceptionWithHostPort (util.js:879:20)
+109 verbose stack     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1057:14)
+110 verbose cwd C:\Users\renej\Desktop\testng
+111 error Windows_NT 6.1.7601
+112 error argv "C:\\Users\\renej\\Downloads\\NodeJSPortable\\App\\NodeJS\\node.exe" "C:\\Users\\renej\\Downloads\\NodeJSPortable\\Data\\node_modules\\npm\\bin\\npm-cli.js" "install"
+113 error node v5.7.0
+114 error npm  v3.5.3
+115 error code ECONNREFUSED
+116 error errno ECONNREFUSED
+117 error syscall connect
+118 error Error: connect ECONNREFUSED 151.101.16.162:443
+118 error     at Object.exports._errnoException (util.js:856:11)
+118 error     at exports._exceptionWithHostPort (util.js:879:20)
+118 error     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1057:14)
+118 error  { [Error: connect ECONNREFUSED 151.101.16.162:443]
+118 error   code: 'ECONNREFUSED',
+118 error   errno: 'ECONNREFUSED',
+118 error   syscall: 'connect',
+118 error   address: '151.101.16.162',
+118 error   port: 443,
+118 error   parent: 'angular-architecture' }
+119 error If you are behind a proxy, please make sure that the
+119 error 'proxy' config is set properly.  See: 'npm help config'
+120 verbose exit [ 1, true ]

@@ -30,7 +30,7 @@ export default class DataService implements IDataService {
         let pageValue:IDeckBuilderPageValue = {cards: this.CardsService.get()};
         // this.dataModel.setPageValue(pageValue);
 
-        if (this.$window.location.hash) {
+        if ($stateParams.id) {
             // very naive deck getting
             // obviously a bad implementation with multi level arrays etc., but enough for a demo
             // it would probably also be better not to do all of this logic in the constructor because it make testing harder

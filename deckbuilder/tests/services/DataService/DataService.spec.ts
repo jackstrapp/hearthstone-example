@@ -17,6 +17,7 @@ describe('deckmanager.DataService', () => {
         CardsServiceMock:ICardsService,
         pageValueExtractorSpy:jasmine.Spy,
         localStorageMock:ILocalStorageService,
+        stateMock: StateService,
         localStorageSpy:jasmine.Spy,
         deck:IDeck,
         card1:ICard,
@@ -41,12 +42,16 @@ describe('deckmanager.DataService', () => {
         card2 = new Card('bar', 0, CardRarityEnum.BASIC, '', 0, 0, true);
         card3 = new Card('baz', 0, CardRarityEnum.BASIC, '', 0, 0, true);
 
+        stateMock = {
+            go: () => {}
+        } as any;
+
         CardsServiceMock = {
             get: ():void => {
             }
         } as any;
 
-        dataService = new DataService($window, CardsServiceMock, localStorageMock, {id: 0}, <StateService>{});
+        dataService = new DataService($window, CardsServiceMock, localStorageMock, {id: 0}, stateMock);
         spyOn(dataService, <any>'getCardList').and.returnValue([card1, card2, card3]);
     });
 
@@ -90,7 +95,7 @@ describe('deckmanager.DataService', () => {
                 new Card('troo', 0, CardRarityEnum.BASIC, '', 0, 0, false)
             ];
 
-            selectedDeck = new Deck('test', 'foobar', [card1, card2, card3]);
+            selectedDeck = new Deck('test',  'foobar', [card1, card2, card3]);
             deckInStorage = [
                 new Deck('best', 'barbaz', []),
                 selectedDeck,
@@ -100,7 +105,7 @@ describe('deckmanager.DataService', () => {
             spyOn(localStorageMock, 'loadSettings').and.returnValue(deckInStorage);
             spyOn(CardsServiceMock, 'get').and.returnValue(pageValueCards);
 
-            dataService = new DataService($window, CardsServiceMock, localStorageMock, {id: 0}, <StateService>{});
+            dataService = new DataService($window, CardsServiceMock, localStorageMock, {id: 'test'}, <StateService>{});
         });
 
         it('should set initial deck', () => {

@@ -13,26 +13,28 @@ var watch = require('gulp-watch');
 var karma = require('karma').Server;
 var tslint = require('gulp-tslint');
 
+module.exports = function (config) {
     // default project config
+    var tsProject = ts.createProject(path.join(__dirname,'tsconfig.json'));
     
 
     // Clean out build directories
     gulp.task('clean', function () {
         del.sync([
-            path.join(__dirname, 'build'),
-            path.join(__dirname, 'appTypings'),
-            path.join(__dirname, 'compiled')
+            path.join(__dirname, 'build', config.appName),
+            path.join(__dirname, 'appTypings', config.appName),
+            path.join(__dirname, 'compiled', config.appName)
         ], {
             force: true
         });
     });
 
-    const tsTask = (config) => {
-        var tsProject = ts.createProject(path.join(__dirname,'tsconfig.json'));
+    // compile TypeScript
+    gulp.task('ts', ['lint', 'clean'], function () {
         var tsResult = gulp
-        .src(path.join(config.path, '**/*.ts'))
-        .pipe(sourcemaps.init()) // with Sourcemaps
-        .pipe(ts(tsProject));
+            .src(path.join(config.path, '**/*.ts'))
+            .pipe(sourcemaps.init()) // with Sourcemaps
+            .pipe(ts(tsProject));
 
         return merge([
             tsResult.dts // write automatically generated typing files
@@ -42,26 +44,10 @@ var tslint = require('gulp-tslint');
                 .pipe(sourcemaps.write())
                 .pipe(gulp.dest(path.join(__dirname, 'build', config.appName)))
         ]);
-    };
-    
-    gulp.task('ts-common', function () {
-        return tsTask({appName: 'common', path: 'common'});
-    });
-    
-    gulp.task('ts-deckbuilder', function () {
-        return tsTask({appName: 'deckBuilder', path: 'deckBuilder'});
-    });
-    
-    gulp.task('ts-deckmanager', function () {
-        return tsTask({appName: 'deckManager', path: 'deckManager'});
     });
 
-    // compile TypeScript
-    gulp.task('ts', ['ts-common', 'ts-deckmanager', 'ts-deckbuilder'], function () {
-        return tsTask({appName: 'main', path: 'main'});
-    });
-
-    const jsTask = (config) => {
+    // prepare files for browser with Browserify
+    gulp.task('js', ['ts'], function () {
         return browserify({
             entries: path.join(__dirname, 'build', config.appName, 'main.js'),
             debug: true
@@ -77,23 +63,6 @@ var tslint = require('gulp-tslint');
             .pipe(source(path.join(config.appName + 'Bundle.js')))
             // in the application's "compiled" folder
             .pipe(gulp.dest(path.join(__dirname, 'compiled', config.appName)));
-    };
-
-    gulp.task('js-common', function () {
-        return jsTask({appName: 'common', path: 'common'});
-    });
-    
-    gulp.task('js-deckbuilder', function () {
-        return jsTask({appName: 'deckBuilder', path: 'deckBuilder'});
-    });
-    
-    gulp.task('js-deckmanager', function () {
-        return jsTask({appName: 'deckManager', path: 'deckManager'});
-    });
-
-    // compile TypeScript
-    gulp.task('js', ['ts', 'js-common', 'js-deckmanager', 'js-deckbuilder'], function () {
-        return jsTask({appName: 'main', path: 'main'});
     });
 
     // run unit tests
@@ -101,18 +70,17 @@ var tslint = require('gulp-tslint');
         // files needed for testing
         var files = [
             // include needed libraries
-            path.join(__dirname, 'node_modules/phantomjs-polyfill/bind-polyfill.js'),
             path.join(__dirname, 'node_modules/angular/angular.js'),
-            path.join(__dirname, 'node_modules/angular-mocks/angular-mocks.js'),
-            path.join(__dirname, 'libs/angular-ui-router.js')
+            path.join(__dirname, 'node_modules/angular-mocks/angular-mocks.js')
         ];
-      
+        // unless we're testing the common vertical, include it as an extra
+        if (config.appName !== 'common') {
+            files = files.concat([path.join(__dirname, 'compiled/common/commonBundle.js')])
+        }
         // application, the actual tests
         files = files.concat([
-            path.join(__dirname, 'compiled', 'main', '**/*.js'), // include the application
-            path.join(__dirname, 'build', 'common', 'tests/**/*.spec.js'), // test files
-            path.join(__dirname, 'build', 'deckManager', 'tests/**/*.spec.js'), // test files
-            path.join(__dirname, 'build', 'deckBuilder', 'tests/**/*.spec.js') // test files
+            path.join(__dirname, 'compiled', config.appName, '**/*.js'), // include the application
+            path.join(__dirname, 'build', config.appName, 'tests/**/*.spec.js') // test files
         ]);
 
         // start Karma Test Runner
@@ -130,38 +98,33 @@ var tslint = require('gulp-tslint');
                 debug: true,
                 transform: ['browserify-shim']
             },
-            // reporters: ['kjhtml'],
             singleRun: true,
             autoWatch: false
         }, done).start();
     });
 
+    // lint TypeScript code
+    gulp.task('lint', function () {
+        return gulp
+            .src(path.join(config.path, '**/*.ts'))
+            .pipe(tslint())
+            .pipe(tslint.report('verbose'));
+    });
+
     // watch for file changes
-    gulp.task('watch-test', ['test'], function () {
+    gulp.task('watch', ['test'], function () {
         var watchPath = [
-            path.join('common', '**/*.ts'),
-            path.join('deckManager', '**/*.ts'),
-            path.join('deckBuilder', '**/*.ts'),
-            path.join('main', '**/*.ts')
+            path.join(config.path, '**/*.ts')
         ];
+        if (config.appName !== 'common') {
+            watchPath = watchPath.concat(path.join(__dirname, 'compiled/common/**/*.js'));
+        }
 
         return watch(watchPath, function () {
             gulp.start('test');
         });
-    });
 
-    // watch for file changes
-    gulp.task('watch-js', ['js'], function () {
-        var watchPath = [
-            path.join('common', '**/*.ts'),
-            path.join('deckManager', '**/*.ts'),
-            path.join('deckBuilder', '**/*.ts'),
-            path.join('main', '**/*.ts')
-        ];
-
-        return watch(watchPath, function () {
-            gulp.start('js');
-        });
     });
 
     gulp.task('default', ['js']);
+};

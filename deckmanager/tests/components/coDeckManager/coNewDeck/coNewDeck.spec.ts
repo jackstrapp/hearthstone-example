@@ -9,6 +9,7 @@ describe('deckManager.coNewDeck', () => {
         controller:NewDeckController,
         controllerSpy:jasmine.Spy;
 
+    
     beforeEach(() => {
         angular.mock.module(appName);
 

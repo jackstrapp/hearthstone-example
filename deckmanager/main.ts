@@ -6,7 +6,7 @@ import registerServices from './services/deckManagerServices';
 export const appName:string = 'deckManager';
 
 // register module, directives, services, etc.
-angular.module(appName, ['common']);
+angular.module(appName, ['ui.router', 'common']);
 registerDirectives(appName);
 registerServices(appName);
 

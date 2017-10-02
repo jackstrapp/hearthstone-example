@@ -4,6 +4,9 @@ import {appName as commonApp} from'../common/main';
 import {appName as deckBuilderApp} from '../deckbuilder/main';
 import {appName as deckManagerApp} from'../deckmanager/main';
 
+
+
+
 // app name
 export const appName:string = 'deckApp';
 
@@ -12,7 +15,7 @@ angular.module(appName, ['ui.router', commonApp, deckBuilderApp, deckManagerApp]
 
 
 angular.module(appName).config(($stateProvider: StateProvider, $urlRouterProvider: UrlRouterProvider) => {
-    const deckManagerState: any = {
+    const deckManagerStateS: any = {
         name: 'deckManager',
         url: '/',
         template: '<deck-manager-co-deck-manager />'
@@ -23,8 +26,8 @@ angular.module(appName).config(($stateProvider: StateProvider, $urlRouterProvide
         url: '/deckBuilder/:id',
         template: '<deck-builder-co-deck-builder />'
     };
-
-    $stateProvider.state(deckManagerState);
+    
+    $stateProvider.state(deckManagerStateS);
     $stateProvider.state(deckBuilderState);
     $urlRouterProvider.otherwise('/');
 });
